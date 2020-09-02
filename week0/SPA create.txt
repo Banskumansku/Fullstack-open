@@ -1,0 +1,5 @@
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note over selain 
+{ content: "HTML on helppoa", date: "2019-01-01" }
+end note
+palvelin-->selain: 201 Created
