@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
   const course = {
-    course: 'Half Stack application development',
+    name: 'Half Stack application development',
     parts: [
       {
         name: 'Fundamentals of React',
@@ -21,21 +21,25 @@ const App = () => {
     ]
   }
 
-
   const Header = (props) => {
     return (
-      <h1>{props.course}</h1>
+      <h1>{props.course.name}</h1>
     )
   }
 
   const Total = (props) => {
+    console.log(props)
+
+    let sum = 0
+    props.parts.forEach(element => {
+      sum = sum + element.exercises
+    });
     return (
-      <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises} </p>
+      <p>Number of exercises {sum} </p>
     )
   }
 
   const Content = (props) => {
-    console.log(props)
     return (
       <div>
         <Part part={props.parts[0]} />
@@ -55,7 +59,7 @@ const App = () => {
 
   return (
     <div>
-      <Header course={course.course} />
+      <Header course={course} />
       <Content parts={course.parts} />
       <Total parts={course.parts} />
     </div>
