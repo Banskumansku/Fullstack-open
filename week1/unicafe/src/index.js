@@ -1,27 +1,42 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const StatisticsLine = ({text, value}) => {
-  return (<div>{text} {value}</div>)
+const StatisticsLine = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
 }
 
 // oikea paikka komponentin määrittelyyn
 const Statistics = ({ good, neutral, bad }) => {
   const all = good + neutral + bad;
-  const ave = (good - bad) / all;
-  const pos = (good / all) * 100;
-  const positive = pos + ' %'
-  return (
-    <div>
-      <h1>Stats</h1>
-      <StatisticsLine text="good" value={good}/>
-      <StatisticsLine text="neutral" value={neutral}/>
-      <StatisticsLine text="bad" value={bad}/>
-      <StatisticsLine text="all" value={all}/>
-      <StatisticsLine text="average" value={ave}/>
-      <StatisticsLine text="positive" value={positive}/>
-    </div >
-  )
+  if (all !== 0) {
+    const ave = (good - bad) / all;
+    const pos = (good / all) * 100;
+    const positive = pos + ' %'
+    return (
+      <div>
+        <h1>Stats</h1>
+        <table>
+          <tbody>
+            <StatisticsLine text="good" value={good} />
+            <StatisticsLine text="neutral" value={neutral} />
+            <StatisticsLine text="bad" value={bad} />
+            <StatisticsLine text="all" value={all} />
+            <StatisticsLine text="average" value={ave} />
+            <StatisticsLine text="positive" value={positive} />
+          </tbody>
+        </table>
+      </div >
+    )
+  }
+  return (<div>
+    <h1>Stats</h1>
+    <p>no feedback given yet</p>
+  </div >)
 }
 
 const Button = (props) => (
