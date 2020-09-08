@@ -9,6 +9,7 @@ const Persons = ({ persons }) => {
                     <Person key={i} person={person} />
                 )}
             </ul>
+            <li>{person.name}: {person.number} <span><button>Remove</button></span> </li>
         </div>
     )
 }
