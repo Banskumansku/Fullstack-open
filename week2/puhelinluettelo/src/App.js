@@ -40,6 +40,11 @@ const App = () => {
           setTimeout(() => {
             setNotificationMessage(null)
           }, 5000)
+        }).catch(e => {
+          setNotificationMessage(e.response.data.error)
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
         })
       }
     } else {
@@ -53,6 +58,11 @@ const App = () => {
           setNotificationMessage(
             `Contact '${personObject.name}' was added to server`
           )
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
+        }).catch(e => {
+          setNotificationMessage(e.response.data.error)
           setTimeout(() => {
             setNotificationMessage(null)
           }, 5000)
