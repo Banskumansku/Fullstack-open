@@ -31,4 +31,19 @@ blogRouter.post('/', (request, response) => {
 
 })
 
+blogRouter.put('/:id', (request, response) => {
+    console.log(request.body)
+    const blog = request.body
+    console.log(blog)
+    Blog.findByIdAndUpdate(request.params.id, blog, { new: true }).then(updatedBlog => {
+        response.json(updatedBlog)
+    }).catch(error => console.log(error))
+})
+
+blogRouter.delete('/:id', (request, response) => {
+    Blog.findByIdAndRemove(request.params.id).then(_result => {
+        response.status(204).end()
+    }).catch(error => console.log(error))
+})
+
 module.exports = blogRouter
