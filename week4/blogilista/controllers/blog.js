@@ -1,6 +1,8 @@
 
 const blogRouter = require('express').Router()
 const Blog = require('../models/blog')
+const _ = require('lodash');
+
 
 blogRouter.get('/', (request, response) => {
     Blog
@@ -11,7 +13,14 @@ blogRouter.get('/', (request, response) => {
 })
 
 blogRouter.post('/', (request, response) => {
-    console.log("asd")
+    if (!request.body.title || !request.body.url) {
+        return response.status(400).json({
+            error: 'number or name missing'
+        })
+    }
+    if (!request.body.likes) {
+        _.assign(request.body, { likes: 0 })
+    }
     const blog = new Blog(request.body)
 
     blog
@@ -19,6 +28,7 @@ blogRouter.post('/', (request, response) => {
         .then(result => {
             response.status(201).json(result)
         })
+
 })
 
 module.exports = blogRouter
