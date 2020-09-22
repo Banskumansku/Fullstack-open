@@ -4,16 +4,16 @@ const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
     User
-    .find({})
-    .then(users => {
-        response.json(users)
-    })
+        .find({}).populate('blogs', { url: 1, title: 1, author: 1, id: 1 })
+        .then(users => {
+            response.json(users)
+        })
 })
 
 usersRouter.post('/', async (request, response) => {
     const body = request.body
 
-    if (!body.password || body.password.length() < 4) {
+    if (!body.password || body.password.length < 3) {
         return response.status(400).json({
             error: 'username or password needs to be at least 3 characters long'
         })
