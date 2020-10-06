@@ -13,14 +13,6 @@ const getTokenFrom = request => {
     return null
 }
 
-const processToken = request => {
-    const token = getTokenFrom(request)
-    const decodedToken = jwt.verify(token, process.env.SECRET)
-    if (!token || !decodedToken.id) {
-        return response.status(401).json({ error: 'token missing or invalid' })
-    }
-    return decodedToken;
-}
 
 blogRouter.get('/', async (request, response) => {
     const blogs = await Blog.find({}).populate('user', { username: 1, name: 1 })
@@ -59,6 +51,7 @@ blogRouter.post('/', async (request, response) => {
 })
 
 blogRouter.put('/:id', (request, response, next) => {
+    console.log(request.params)
     const blog = request.body
     Blog.findByIdAndUpdate(request.params.id, blog, { new: true }).then(updatedBlog => {
         response.json(updatedBlog.toJSON())
