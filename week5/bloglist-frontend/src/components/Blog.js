@@ -32,9 +32,8 @@ const Blog = ({ blog, updateBlog, removeBlog }) => {
   }
 
   const deleteBlog = (event) => {
-    if (window.confirm("Do you really want to remove blog?")) {
+    if (window.confirm('Do you really want to remove blog?')) {
       event.preventDefault()
-      console.log("blogremove")
       removeBlog(blog)
     }
   }

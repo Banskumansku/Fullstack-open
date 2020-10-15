@@ -53,7 +53,7 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.clear()
-    blogService.clearToken();
+    blogService.clearToken()
     setUser(null)
   }
 
@@ -72,9 +72,7 @@ const App = () => {
   }
 
   const removeBlog = (blogObject) => {
-    blogService.remove(blogObject.id).then(status => {
-      setBlogs(blogs.filter(blog => blog.id !== blogObject.id))
-    });
+    blogService.remove(blogObject.id).then(setBlogs(blogs.filter(blog => blog.id !== blogObject.id)))
   }
 
   const loginForm = () => (
