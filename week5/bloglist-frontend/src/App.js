@@ -23,7 +23,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -39,7 +39,7 @@ const App = () => {
       })
 
       window.localStorage.setItem(
-        'loggedNoteappUser', JSON.stringify(user)
+        'loggedBlogAppUser', JSON.stringify(user)
       )
 
       blogService.setToken(user.token)
@@ -68,7 +68,7 @@ const App = () => {
   const updateBlog = (blogObject) => {
     blogService.update(blogObject.id, blogObject).then(returnedBlog => {
       setBlogs(blogs.map(blog => blog.id !== blogObject.id ? blog : returnedBlog))
-    })
+    }).finally(setBlogs(blogs.sort((a, b) => a.likes >= b.likes ? -1 : 1)))
   }
 
   const removeBlog = (blogObject) => {
@@ -76,15 +76,13 @@ const App = () => {
   }
 
   const loginForm = () => (
-    <Togglable buttonLabel='login'>
-      <LoginForm
-        username={username}
-        password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
-        handleSubmit={handleLogin}
-      />
-    </Togglable>
+    <LoginForm
+      username={username}
+      password={password}
+      handleUsernameChange={({ target }) => setUsername(target.value)}
+      handlePasswordChange={({ target }) => setPassword(target.value)}
+      handleSubmit={handleLogin}
+    />
   )
 
   const blogForm = () => (
