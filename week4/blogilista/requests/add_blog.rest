@@ -1,10 +1,9 @@
-POST http://localhost:3003/api/blogs
+POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbiIsImlkIjoiNWY2OWRiNmY2NDEwODgxOWY0NDIyZmI2IiwiaWF0IjoxNjAwNzgxNTM4fQ.lboD7xx2_4f-ahfQdAeMRzauiqnm7eduWX_iR9LUtDI
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjVmOGQ3NmMyNmY5NmY4MTIzOGFlNWM1NSIsImlhdCI6MTYwMzEwNjQ5OH0.BxU1bIhxECP9jTCy-MTq9uenVSu3maP_w9kAAuFxVqI
 
 {
     "url": "String",
     "title": "asd",
-    "likes": 5,
     "author": "asdd"
 }
