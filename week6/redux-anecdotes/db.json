@@ -1,0 +1,14 @@
+{
+  "anecdotes": [
+    {
+      "content": "asd",
+      "votes": 24,
+      "id": 1
+    },
+    {
+      "content": "dsa",
+      "votes": 23,
+      "id": 2
+    }
+  ]
+}
