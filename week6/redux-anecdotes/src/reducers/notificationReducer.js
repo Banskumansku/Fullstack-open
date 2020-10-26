@@ -1,4 +1,5 @@
 const startValue = ''
+let timeoutId;
 
 const notificationReducer = (state = startValue, action) => {
     switch (action.type) {
@@ -13,7 +14,8 @@ const notificationReducer = (state = startValue, action) => {
 
 export const newNotification = (content, time) => {
     return async dispatch => {
-        setTimeout(
+        if (!!timeoutId) clearTimeout(timeoutId)
+        timeoutId = setTimeout(
             () => dispatch({ type: 'RESET_NOTIFICATION' }),
             time*1000
         );

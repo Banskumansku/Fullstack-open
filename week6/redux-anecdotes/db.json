@@ -2,13 +2,18 @@
   "anecdotes": [
     {
       "content": "asd",
-      "votes": 24,
+      "votes": 44,
       "id": 1
     },
     {
       "content": "dsa",
-      "votes": 23,
+      "votes": 37,
       "id": 2
+    },
+    {
+      "content": "ddd",
+      "votes": 12,
+      "id": 3
     }
   ]
 }

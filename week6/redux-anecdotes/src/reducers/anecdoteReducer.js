@@ -12,7 +12,6 @@ const reducer = (state = initialState, action) => {
     case 'VOTE_ANECDOTE':
       const id = action.data
       const anecdoteToChange = state.find(n => n.id === id)
-      console.log(action.data)
       const changedAnecdote = {
         ...anecdoteToChange,
         votes: anecdoteToChange.votes + 1
