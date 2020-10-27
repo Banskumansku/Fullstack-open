@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { createBlog } from '../reducers/blogReducer'
+import { useField } from '../hooks'
 
-const BlogForm = ({ createBlog }) => {
-    const [blogAuthor, setBlogAuthor] = useState('')
-    const [blogUrl, setBlogurl] = useState('')
-    const [blogTitle, setBlogTitle] = useState('')
 
-    const handleTitleBlogChange = (event) => setBlogTitle(event.target.value)
-    const handleAuthorBlogChange = (event) => setBlogAuthor(event.target.value)
-    const handleurlBlogChange = (event) => setBlogurl(event.target.value)
+const BlogForm = () => {
+    const dispatch = useDispatch()
 
-    const addBlog = (event) => {
+    const title = useField('text')
+    const author = useField('text')
+    const url = useField('text')
+
+    const addBlog = async (event) => {
         event.preventDefault()
-        createBlog({
-            title: blogTitle,
-            author: blogAuthor,
-            url: blogUrl
-        })
+        dispatch(createBlog({
+            title: title.value,
+            author: author.value,
+            url: url.value
+        }))
     }
 
     return (
@@ -23,22 +25,14 @@ const BlogForm = ({ createBlog }) => {
             <form onSubmit={addBlog}>
                 <h1>create new</h1>
                 <div>title:
-                    <input id='title'
-                        title={blogTitle}
-                        onChange={handleTitleBlogChange}
+                    <input {...title}
                     />
                 </div>
                 <div>author:
-                    <input id='author'
-                        title={blogAuthor}
-                        onChange={handleAuthorBlogChange}
-                    />
+                    <input {...author} />
                 </div>
                 <div>url:
-                    <input id='url'
-                        title={blogUrl}
-                        onChange={handleurlBlogChange}
-                    />
+                    <input {...url}/>
                 </div>
                 <button id='blogSubmitButton' type="submit">create</button>
             </form>
