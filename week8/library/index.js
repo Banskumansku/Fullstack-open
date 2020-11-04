@@ -165,7 +165,9 @@ const resolvers = {
             const author = authors.find(author => author.name === args.name)
             if (!!author) {
                 console.log(args.name)
+                authors = authors.filter(author => author.name !== args.name) 
                 authors = authors.concat({...author, born: args.setBornTo})
+                console.log(authors)
                 return author
             }
             return null

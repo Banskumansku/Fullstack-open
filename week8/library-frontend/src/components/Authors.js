@@ -5,7 +5,7 @@ const Authors = (props) => {
   if (!props.show) {
     return null
   }
-  
+
   const authors = props.authors.data.allAuthors
 
   return (
@@ -14,7 +14,9 @@ const Authors = (props) => {
       <table>
         <tbody>
           <tr>
-            <th></th>
+            <th>
+              name
+            </th>
             <th>
               born
             </th>
@@ -24,9 +26,9 @@ const Authors = (props) => {
           </tr>
           {authors.map(a =>
             <tr key={a.name}>
-              <td>{a.name}</td>
-              <td>{a.born}</td>
-              <td>{a.bookCount}</td>
+                <td>{a.name}</td>
+                <td>{a.born}</td>
+                <td>{a.bookCount}</td>
             </tr>
           )}
         </tbody>
